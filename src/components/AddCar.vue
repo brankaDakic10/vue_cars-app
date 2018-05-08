@@ -34,7 +34,7 @@
 
              
             <div class="form-group">
-                <label >Is Automatic</label>
+                <label >Is Automatic?</label>
                 <input type="checkbox"  v-model="newCar.isAutomatic" class="form-control">
             </div>
 
@@ -49,7 +49,8 @@
             </div>
 
             <div class="form-group">
-            <button class="btn btn-success">Add new car</button>
+            <button class="btn btn-success">Add new car</button> 
+            <input type="reset" class="btn btn-primary" >
             </div>
             </form>
     </article> 
