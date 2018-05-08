@@ -60,6 +60,10 @@
 <script>
 import {carsService} from '../services/CarsService'
 export default {
+    created() {
+        console.log(this.$route.params.id)
+        
+    },
   data(){
       return{
         newCar:{

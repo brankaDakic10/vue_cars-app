@@ -1,7 +1,7 @@
 
 <template>
   <div class="container">
-      AppCars
+      
 
 <div class="card" style="width: 18rem;" v-for="(car, key) in cars"
       :key="key">
@@ -12,7 +12,7 @@
     <p class="card-text">Year: {{car.year}}</p>
     <p class="card-text">MaxSpeed: {{car.maxSpeed}}</p>
     <p class="card-text">Number Of Doors: {{car.numberOfDoors}}</p>
-   
+   <a href="#" @click="editCar(car.id)" class="btn btn-primary">Edit</a>
   </div>
 </div>
 
@@ -39,6 +39,13 @@ export default {
          })  
   
    
+  },
+  methods:{
+      editCar(id){
+         
+         this.$router.push('/edit/'+ id )
+        
+      }
   }
 }
 </script>
