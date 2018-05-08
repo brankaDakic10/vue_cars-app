@@ -50,7 +50,8 @@
 
             <div class="form-group">
             <button class="btn btn-success">Add new car</button> 
-            <input type="reset" class="btn btn-primary" >
+            <button type="reset" class="btn btn-primary" >Reset</button> 
+            <button  class="btn btn-info" @click="showCarInfo" >Preview</button> 
             </div>
             </form>
     </article> 
@@ -83,7 +84,20 @@ export default {
             console.log(error)
          })  
           
+      },
+      showCarInfo(){
+          alert(
+              'Brand: ' + this.newCar.brand + '\n' +
+                'Model: ' + this.newCar.model + '\n' +
+                'Year: ' + this.newCar.year + '\n' +
+                'Max Speed: ' + this.newCar.maxSpeed + '\n' +
+                'Number of doors: ' + this.newCar.numberOfDoors + '\n' +
+                'Is automatic: ' + this.newCar.isAutomatic + '\n' +
+                'Engine: ' + this.newCar.engine
+            
+          )
       }
+
   },
   computed:{
       years(){
