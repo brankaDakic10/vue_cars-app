@@ -4,6 +4,7 @@
 <router-link class="navbar-brand" to="/">CarsApp</router-link>
 <div class="navbar-nav">
 <router-link to="/cars" class="nav-link">Cars</router-link>
+<router-link to="/add" class="nav-link">Add </router-link>
 
 </div>
 </nav>
