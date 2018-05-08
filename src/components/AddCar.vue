@@ -6,16 +6,16 @@
            
             <div class="form-group">
                 <label >Brand</label>
-                <input type="text"  v-model="newCar.brand" class="form-control"  placeholder=" Enter brand ">
+                <input type="text"  v-model="newCar.brand" class="form-control"  placeholder=" Enter brand " pattern=".{2,}" required>
             </div>
             <div class="form-group">
                 <label >Model</label>
-                <input type="text"  v-model="newCar.model" class="form-control"  placeholder=" Enter model ">
+                <input type="text"  v-model="newCar.model" class="form-control"  placeholder=" Enter model " pattern=".{2,}" required>
             </div>
 
              <div class="form-group">
                 <label >Year</label><br>
-             <select v-model="newCar.year" >
+             <select v-model="newCar.year" required >
             <option v-for="year in years" :key="year">{{year}}</option>
            
            
@@ -24,28 +24,28 @@
 
              <div class="form-group">
                 <label >MaxSpeed</label>
-                <input type="number"  v-model="newCar.maxSpeed" class="form-control"  placeholder=" Enter max speed ">
+                <input type="number"  v-model="newCar.maxSpeed" class="form-control"  placeholder=" Enter max speed " >
             </div>
             
            <div class="form-group">
                 <label >Number Of Doors</label>
-                <input type="number"  v-model="newCar.numberOfDoors" class="form-control"  placeholder=" Enter number Of Doors ">
+                <input type="number"  v-model="newCar.numberOfDoors" class="form-control"  placeholder=" Enter number Of Doors " required>
             </div>
 
              
             <div class="form-group">
                 <label >Is Automatic?</label>
-                <input type="checkbox"  v-model="newCar.isAutomatic" class="form-control">
+                <input type="checkbox"  v-model="newCar.isAutomatic" class="form-control" required>
             </div>
 
        
             <div class="form-group">
                 <label >Engine</label><br>
 
-                    <input type="radio" v-model="newCar.engine" value="diesel"> diesel<br>
-                    <input type="radio" v-model="newCar.engine" value="petrol"> petrol<br>
-                    <input type="radio"  v-model="newCar.engine" value="electric"> electric<br>
-                    <input type="radio"  v-model="newCar.engine" value="hybrid"> hybrid<br>
+                    <input type="radio" v-model="newCar.engine" value="diesel" required> diesel<br>
+                    <input type="radio" v-model="newCar.engine" value="petrol" required> petrol<br>
+                    <input type="radio"  v-model="newCar.engine" value="electric" required> electric<br>
+                    <input type="radio"  v-model="newCar.engine" value="hybrid" required> hybrid<br>
             </div>
 
             <div class="form-group">
