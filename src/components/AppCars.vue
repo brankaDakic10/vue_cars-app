@@ -12,7 +12,9 @@
     <p class="card-text">Year: {{car.year}}</p>
     <p class="card-text">MaxSpeed: {{car.maxSpeed}}</p>
     <p class="card-text">Number Of Doors: {{car.numberOfDoors}}</p>
-   <a href="#" @click="editCar(car.id)" class="btn btn-primary">Edit</a>
+   <!-- <a href="#" @click="editCar(car.id)" class="btn btn-primary">Edit</a> -->
+   <router-link tag="button" :to="{ name: 'edit-car', params: { id: car.id }}" class="btn btn-primary" >Edit</router-link>
+   <button href="#"  @click="deleteCar(car.id)" class="btn btn-warning">Delete</button>
   </div>
 </div>
 
@@ -31,22 +33,39 @@ export default {
     },
      created() {
       carsService.getAll()
-       .then((response)=> {
-           this.cars=response.data
-           console.log(this.cars)
-         }).catch((error)=>{
+          .then((response)=> {
+            this.cars=response.data
+             console.log(this.cars)
+         }).catch((error)=> {
             console.log(error)
          })  
   
    
   },
   methods:{
-      editCar(id){
+      // editCar(id){
          
-         this.$router.push('/edit/'+ id )
+      //    this.$router.push('/edit/'+ id )
         
+      // },
+
+     deleteCar(id) {
+          
+            let confirmDelete = confirm('Do you want to delete this car?')
+            if (confirmDelete) {
+                carsService.delete(id)
+               .then((success) => {
+                   this.$router.push('/cars')
+                    window.location.reload()
+             }).catch((error)=> {
+                console.log(error)
+         })  
+              
       }
+            
   }
+ }
+      
 }
 </script>
 

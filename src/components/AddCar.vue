@@ -1,8 +1,9 @@
 <template>
   <div class="container">
           <article class="col-8 bgr">
-            <h4>Add new car</h4>
-            <form @submit.prevent="addNew">
+            <!-- <h4>Add new car</h4> -->
+            <h2>{{ this.$route.params.id ? 'Edit car' : 'Add new car'}}</h2>
+            <form @submit.prevent="submit">
            
             <div class="form-group">
                 <label >Brand</label>
@@ -49,7 +50,7 @@
             </div>
 
             <div class="form-group">
-            <button class="btn btn-success">Add new car</button> 
+            <button class="btn btn-success">Submit</button> 
             <button type="reset" class="btn btn-primary" >Reset</button> 
             <button  class="btn btn-info" @click="showCarInfo" >Preview</button> 
             </div>
@@ -57,15 +58,24 @@
     </article> 
   </div>
 </template>
+
 <script>
 import {carsService} from '../services/CarsService'
 export default {
     created() {
-        console.log(this.$route.params.id)
+        if(this.$route.params.id){
+        carsService.get(this.$route.params.id)
+        .then((response) => {
+            this.newCar=response.data
+           
+        }).catch((error) => {
+            console.log(error)
+        })
+      }
         
     },
   data(){
-      return{
+     return{
         newCar:{
             brand:'',
             model:'',
@@ -78,17 +88,34 @@ export default {
       }
   },
   methods:{
-      addNew(){
-          console.log(this.newCar)
-          carsService.add(this.newCar)
+      submit(){
+    
+         if(this.$route.params.id)
+          {
+            carsService.edit(this.$route.params.id, this.newCar)
+           .then((response)=> {
+          
+            this.$router.push('/cars')
+          }).catch((error)=>{
+            console.log('Edit: '+ error)
+         })  
+          
+          }
+          else
+          {
+            carsService.add(this.newCar)
             .then((response)=> {
           
             this.$router.push('/cars')
           }).catch((error)=>{
-            console.log(error)
+            console.log('Add:'+ error)
          })  
+          }
           
       },
+
+
+
       showCarInfo(){
           alert(
               'Brand: ' + this.newCar.brand + '\n' +
@@ -99,7 +126,7 @@ export default {
                 'Is automatic: ' + this.newCar.isAutomatic + '\n' +
                 'Engine: ' + this.newCar.engine
             
-          )
+          ) 
       }
 
   },
